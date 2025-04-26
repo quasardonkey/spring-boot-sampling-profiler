@@ -45,9 +45,7 @@ def get_thread_dump(url):
     try:
         response = requests.get(url)
         response.raise_for_status()
-        responseJson = response.json()
-        logging.trace(responseJson)
-        return responseJson
+        return response.json()
     except requests.exceptions.RequestException as e:
         logging.error(f"Error fetching thread dump: {e}")
         return None
@@ -64,7 +62,7 @@ def filter_stack_trace(stack_trace, method_filter):
     :param method_filter: The method filter in the format 'ClassName#MethodName'
     :return: Filtered stack trace
     """
-    if method_filter is None:
+    if method_filter is None or method_filter == '':
         return stack_trace
     else:
         class_name_filter, method_name_filter = method_filter.split('#')
@@ -190,4 +188,3 @@ if __name__ == "__main__":
 
     combined_data = sample_thread_dumps(url, package_filter, method_filter, samples, min_interval, max_interval)
     write_combined_report(combined_data, output_file)
-
