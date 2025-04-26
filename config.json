@@ -1,0 +1,10 @@
+{
+    "url": "http://localhost:8080/actuator/threaddump",
+    "method_filter": "",
+    "package_filter": "",
+    "samples": 100,
+    "min_interval": 1.0,
+    "max_interval": 5.0,
+    "output_file": "sampler_report.csv"
+}
+
